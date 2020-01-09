@@ -1,0 +1,196 @@
+* {
+    box-sizing: border-box;
+}
+body {
+    margin: 0;
+}
+section {
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #e5eeee;
+}
+.container {
+    position: relative;
+    width: 500px;
+}
+.overlay {
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    opacity: .96;
+    background: rgb(48,35,174);
+    background: linear-gradient(58deg, rgba(48,35,174,1) 0%, rgba(200,109,215,1) 100%);
+    -webkit-box-shadow: 0px 13px 34px -13px rgba(2,41,120,1);
+    -moz-box-shadow: 0px 13px 34px -13px rgba(2,41,120,1);
+    box-shadow: 0px 13px 34px -13px rgba(2,41,120,1);  
+}
+.content {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    padding: 60px 70px;
+    background-position: center;
+    background-size: cover;
+    top: 0;
+    left: 0;
+}
+.account {
+    margin-bottom: 2rem;
+    button {
+        text-decoration: none;
+        font-family: 'Roboto Mono', monospace;
+        font-weight: 700;
+        font-size: 1.25rem;
+        color: #fff;
+        background: none;
+        border: none;
+        outline: none;
+        padding-bottom: .5rem;
+        margin-right: 1.85rem;
+        &:hover {
+            border-bottom: 2px solid #e66a64;
+
+        }
+        &.current {
+            border-bottom: 2px solid #e66a64;
+        }
+    }
+}
+.restore {
+    display: flex;
+    justify-content: space-between;
+
+    button {
+        text-decoration: none;
+        font-family: 'Roboto Mono', monospace;
+        font-weight: 300;
+        font-size: 0.85rem;
+        color: #918dc1;
+        background: none;
+        border: none;
+        outline: none;
+        padding-bottom: .5rem;
+        border-bottom: 1px solid #918dc1;
+        &:hover {
+            border-bottom: 1px solid #e66a64;
+
+        }
+    }
+}
+
+/* Forms */
+form.sign-in {
+
+}
+form.join-us {
+    display: none;
+}
+input {
+    width: 100%;
+    background: none;
+    border: 2px solid #8e7dc3;
+    font-size: 1rem;
+    padding: .5rem;
+    margin-top: .5rem;
+    font-family: 'Roboto Mono', monospace;
+    font-weight: 400;
+    color: #8e7dc3;
+    outline: none;
+    &:focus {
+        border: 2px solid #e66a64;
+    }
+    &[type="submit"] {
+        background-color: #23ae92;
+        color: #fff;
+        width: 100%;
+        border: none;
+        padding: 1rem 0;
+    }
+    &[type="checkbox"] {
+        display: inline-block;
+        height: 1rem;
+        width: 1rem;
+        background-color: #23ae92;
+        color: #fff;
+    }
+}
+.input {
+    &--field {
+        margin-bottom: 2rem;
+        &__signed {
+            position: relative;
+            display: flex;
+            margin-top: 5.1rem;
+            margin-bottom: 1rem;
+            padding-left: 2rem;
+            input:checked ~ .checkmark:after {
+                display: block;
+            }
+            .checkmark:after {
+                left: 9px;
+                top: 5px;
+                width: 5px;
+                height: 10px;
+                border: solid white;
+                border-width: 0 3px 3px 0;
+                -webkit-transform: rotate(45deg);
+                -ms-transform: rotate(45deg);
+                transform: rotate(45deg);
+            }
+        }
+    }
+    &--checkbox {
+        cursor: pointer;
+        input {
+            position: absolute;
+            opacity: 0;
+            height: 20px;
+            width: 20px;
+        }
+        span {
+            display: block;
+        }
+        .checkmark {
+            position: absolute;
+            top: 3px;
+            left: 0;
+            height: 20px;
+            width: 20px;
+            background-color: #23ae92;
+            &:after {
+                content: "";
+                position: absolute;
+                display: none;
+                top: 1px;
+                left: 7px;
+            } 
+        }
+    }
+    &--alert {
+        position: absolute;
+        color: #e66a64;
+        font-family: 'Roboto Mono', monospace;
+        font-size: .75rem;
+        font-weight: 300;
+        &__email, 
+        &__pass, 
+        &__passRepeat,
+        &__joinEmail,
+        &__joinPass,
+        &__joinPassRepeat {
+            @extend .input--alert ;
+        }
+        
+    }
+}
+label {
+    display: block;
+    color: #fff;
+    font-family: 'Roboto Mono', monospace;
+}
+p {
+    margin: 0;
+}
