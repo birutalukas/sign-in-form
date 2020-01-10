@@ -56,55 +56,42 @@
 
 					<!-- ### Join Us Form ### -->
 					<?php
+					//validate email
+					if(!empty($_POST['joinEmail'])){
+						$email = htmlentities($_POST['joinEmail'], ENT_QUOTES, 'utf-8');
+					}else{
+						$email = '';
+					}
 					
-					if(isset($_SESSION['auth'])){
-						//cia atliksime formos apdorojima
-						// print_r($_POST);
+					//validate password
+					if(!empty($_POST['joinPassword'])){
+						$pass = md5($_POST['joinPassword']); //code password
+					}else{
+						$pass = '';
+					}
+					
+					//validate password
+					if(!empty($_POST['joinPasswordRepeat'])){
+						$pass_confirm = md5($_POST['joinPasswordRepeat']); //code password
+					}else{
+						$pass_confirm = '';
+					}
 
-						if(!empty($_POST['submitJoin'])){
-							//validuojame email
-							if(!empty($_POST['joinEmail'])){
-								$email = htmlentities($_POST['joinEmail'], ENT_QUOTES, 'utf-8');
-							}else{
-								$email = '';
-							}
+					//final validation & user registration
+					if(!empty($email) && !empty($pass) && $pass == $pass_confirm){
 
-							//validuojame slaptazodi
-							if(!empty($_POST['joinPassword'])){
-								$pass = md5($_POST['joinPassword']); //uzkoduojame slaptazodi
-							}else{
-								$pass = '';
-							}
-
-							//validuojame slaptazodi
-							if(!empty($_POST['joinPasswordRepeat'])){
-								$pass_confirm = md5($_POST['joinPasswordRepeat']); //uzkoduojame slaptazodi
-							}else{
-								$pass_confirm = '';
-							}
-
-							//Galutinis validavimas
-							if(!empty($email) && !empty($pass) && $pass == $pass_confirm){
-								//registruosime vartotoja
-
-								//formuojame uzklausa
+						$sql = "INSERT INTO User (`username`, `password`) VALUES ('$email', '$pass')";
 						
-								 $sql = "INSERT INTO User (`username`, `password`) VALUES ('$email', '$pass')";
-								// echo $sql;
-								//vykdome uzklausa su query metodu, atsakyma saugome i $result
-								$result = $db->query($sql);
-
-								if($result){
-									$message = "Registration successful";									
-								}else{
-									$message = "Registration failed";
-								}
-								
-							}else{
-								//klaidos pranesimas
-								$message = "All fields are required";
-							}
+						$result = $db->query($sql);
+					
+						if($result){
+							$message = "Registration successful";									
+						}else{
+							$message = "Registration failed";
 						}
+					}else{
+						//error message
+						$message = "All fields are required";
 					}
 					?>
 					<form method="POST" enctype="multipart/form-data" name="submitJoin" class="join-us">

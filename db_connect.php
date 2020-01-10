@@ -15,6 +15,6 @@ if ($db->connect_error) {
 	echo $db->connect_error;
 	exit; // PHP execution stopped
 } else {
-	echo "Prisijungeme prie DB";
+	echo "DB Connected";
 }
 ?>
